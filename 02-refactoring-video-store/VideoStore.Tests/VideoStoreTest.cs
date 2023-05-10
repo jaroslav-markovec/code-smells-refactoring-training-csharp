@@ -4,14 +4,16 @@ namespace VideoStore.Tests;
 
 public class VideoStoreTest
 {
-    private readonly Customer _customer; 
-    
-    public VideoStoreTest() {
+    private readonly Customer _customer;
+
+    public VideoStoreTest()
+    {
         _customer = new Customer("Fred");
     }
 
     [Fact]
-    public void TestSingleNewReleaseStatement() {
+    public void TestSingleNewReleaseStatement()
+    {
         _customer.AddRental(new Rental(new Movie("The Cell", Movie.NewRelease), 3));
 
         Assert.Equal(
@@ -20,7 +22,8 @@ public class VideoStoreTest
     }
 
     [Fact]
-    public void TestDualNewReleaseStatement() {
+    public void TestDualNewReleaseStatement()
+    {
         _customer.AddRental(new Rental(new Movie("The Cell", Movie.NewRelease), 3));
         _customer.AddRental(new Rental(new Movie("The Tiger Movie", Movie.NewRelease), 3));
 
@@ -30,7 +33,8 @@ public class VideoStoreTest
     }
 
     [Fact]
-    public void TestSingleChildrenStatement() {
+    public void TestSingleChildrenStatement()
+    {
         _customer.AddRental(new Rental(new Movie("The Tigger Movie", Movie.Children), 3));
 
         Assert.Equal(
@@ -39,7 +43,8 @@ public class VideoStoreTest
     }
 
     [Fact]
-    public void TestSingleChildrenStatementRentedMoreThanThreeDaysAgo() {
+    public void TestSingleChildrenStatementRentedMoreThanThreeDaysAgo()
+    {
         _customer.AddRental(new Rental(new Movie("The Tigger Movie", Movie.Children), 4));
 
         Assert.Equal(
@@ -48,7 +53,8 @@ public class VideoStoreTest
     }
 
     [Fact]
-    public void TestMultipleRegularStatement() {
+    public void TestMultipleRegularStatement()
+    {
         _customer.AddRental(new Rental(new Movie("Plan 9 from Outer Space", Movie.Regular), 1));
         _customer.AddRental(new Rental(new Movie("8 1/2", Movie.Regular), 2));
         _customer.AddRental(new Rental(new Movie("Eraserhead", Movie.Regular), 3));

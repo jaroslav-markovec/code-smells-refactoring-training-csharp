@@ -5,30 +5,36 @@ namespace VideoStore;
 
 public class Customer
 {
-    public Customer(string name) {
-        this._name = name;
+    public Customer(string name)
+    {
+        _name = name;
     }
 
-    public void AddRental(Rental rental) {
+    public void AddRental(Rental rental)
+    {
         _rentals.Add(rental);
     }
 
-    public string GetName() {
+    public string GetName()
+    {
         return _name;
     }
 
-    public string Statement() {
+    public string Statement()
+    {
         double totalAmount = 0;
-        int frequentRenterPoints = 0;
+        var frequentRenterPoints = 0;
         var rentals = _rentals.GetEnumerator();
-        string result = "Rental Record for " + GetName() + "\n";
+        var result = "Rental Record for " + GetName() + "\n";
 
-        while (rentals.MoveNext()) {
+        while (rentals.MoveNext())
+        {
             double thisAmount = 0;
-            Rental each = (Rental) rentals.Current;
+            var each = (Rental)rentals.Current;
 
             // determines the amount for each line
-            switch (each.GetMovie().GetPriceCode()) {
+            switch (each.GetMovie().GetPriceCode())
+            {
                 case Movie.Regular:
                     thisAmount += 2;
                     if (each.GetDaysRented() > 2)
@@ -53,7 +59,6 @@ public class Customer
             result += "\t" + each.GetMovie().GetTitle() + "\t"
                       + String.Format("{0:0.0}", thisAmount) + "\n";
             totalAmount += thisAmount;
-
         }
 
         result += "You owed " + String.Format("{0:0.0}", totalAmount) + "\n";
@@ -64,5 +69,5 @@ public class Customer
 
 
     private readonly string _name;
-    private readonly ArrayList _rentals = new ArrayList();
+    private readonly ArrayList _rentals = new();
 }
