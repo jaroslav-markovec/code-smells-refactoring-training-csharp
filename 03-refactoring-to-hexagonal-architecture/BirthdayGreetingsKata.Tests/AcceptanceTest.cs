@@ -13,14 +13,15 @@ public class AcceptanceTest
     private class BirthdayServiceForTesting : BirthdayService
     {
         private readonly List<MailMessage> _messages;
+
         public BirthdayServiceForTesting(List<MailMessage> messages)
         {
-            _messages= messages;
+            _messages = messages;
         }
 
         protected override void SendMessage(MailMessage msg, SmtpClient smtpClient)
         {
-           _messages.Add(msg);  
+            _messages.Add(msg);
         }
     }
 
@@ -37,7 +38,7 @@ public class AcceptanceTest
             new OurDate("2008/10/08"), "localhost", SmtpPort);
 
         Assert.Single(_messagesSent);
-        MailMessage message = _messagesSent[0];
+        var message = _messagesSent[0];
         Assert.Equal("Happy Birthday, dear John!", message.Body);
         Assert.Equal("Happy Birthday!", message.Subject);
         Assert.Single(message.To);

@@ -4,33 +4,33 @@ namespace BirthdayGreetingsKata;
 
 public class OurDate
 {
-    private readonly DateTime date;
+    private readonly DateTime _date;
 
 
-    public OurDate(String yyyyMMdd)
+    public OurDate(string yyyyMMdd)
     {
-        date = DateTime.ParseExact(yyyyMMdd, "yyyy/MM/dd", null);
+        _date = DateTime.ParseExact(yyyyMMdd, "yyyy/MM/dd", null);
     }
 
     public int GetDay()
     {
-        return date.Day;
+        return _date.Day;
     }
 
     public int GetMonth()
     {
-        return date.Month;
+        return _date.Month;
     }
 
-    public Boolean IsSameDay(OurDate anotherDate)
+    public bool IsSameDay(OurDate anotherDate)
     {
-        return anotherDate.GetDay() == this.GetDay()
-               && anotherDate.GetMonth() == this.GetMonth();
+        return anotherDate.GetDay() == GetDay()
+               && anotherDate.GetMonth() == GetMonth();
     }
 
     private bool Equals(OurDate other)
     {
-        return date.Equals(other.date);
+        return _date.Equals(other._date);
     }
 
     public override bool Equals(object obj)
@@ -43,6 +43,6 @@ public class OurDate
 
     public override int GetHashCode()
     {
-        return date.GetHashCode();
+        return _date.GetHashCode();
     }
 }

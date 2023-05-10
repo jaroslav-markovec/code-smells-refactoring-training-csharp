@@ -5,12 +5,12 @@ namespace BirthdayGreetingsKata;
 public class Employee
 {
     private readonly OurDate _birthDate;
-    private readonly String _lastName;
+    private readonly string _lastName;
     public string FirstName { get; }
     public string Email { get; }
 
-    public Employee(String firstName, String lastName, String birthDate,
-        String email)
+    public Employee(string firstName, string lastName, string birthDate,
+        string email)
     {
         FirstName = firstName;
         _lastName = lastName;
@@ -18,14 +18,15 @@ public class Employee
         Email = email;
     }
 
-    public Boolean IsBirthday(OurDate today)
+    public bool IsBirthday(OurDate today)
     {
         return today.IsSameDay(_birthDate);
     }
 
     protected bool Equals(Employee other)
     {
-        return Equals(_birthDate, other._birthDate) && _lastName == other._lastName && FirstName == other.FirstName && Email == other.Email;
+        return Equals(_birthDate, other._birthDate) && _lastName == other._lastName && FirstName == other.FirstName &&
+               Email == other.Email;
     }
 
     public override bool Equals(object obj)
