@@ -7,7 +7,7 @@ public class RoverPositionTests
     [Fact]
     public void FacingNorthMoveForward()
     {
-        Rover rover = new Rover(0, 0, "N");
+        var rover = new Rover(0, 0, "N");
 
         rover.Receive("f");
 
@@ -17,7 +17,7 @@ public class RoverPositionTests
     [Fact]
     public void FacingNorthMoveBackward()
     {
-        Rover rover = new Rover(0, 0, "N");
+        var rover = new Rover(0, 0, "N");
 
         rover.Receive("b");
 
@@ -27,7 +27,7 @@ public class RoverPositionTests
     [Fact]
     public void FacingSouthMoveForward()
     {
-        Rover rover = new Rover(0, 0, "S");
+        var rover = new Rover(0, 0, "S");
 
         rover.Receive("f");
 
@@ -37,7 +37,7 @@ public class RoverPositionTests
     [Fact]
     public void FacingSouthMoveBackward()
     {
-        Rover rover = new Rover(0, 0, "S");
+        var rover = new Rover(0, 0, "S");
 
         rover.Receive("b");
 
@@ -47,7 +47,7 @@ public class RoverPositionTests
     [Fact]
     public void FacingWestMoveForward()
     {
-        Rover rover = new Rover(0, 0, "W");
+        var rover = new Rover(0, 0, "W");
 
         rover.Receive("f");
 
@@ -57,7 +57,7 @@ public class RoverPositionTests
     [Fact]
     public void FacingWestMoveBackward()
     {
-        Rover rover = new Rover(0, 0, "W");
+        var rover = new Rover(0, 0, "W");
 
         rover.Receive("b");
 
@@ -67,7 +67,7 @@ public class RoverPositionTests
     [Fact]
     public void FacingEastMoveForward()
     {
-        Rover rover = new Rover(0, 0, "E");
+        var rover = new Rover(0, 0, "E");
 
         rover.Receive("f");
 
@@ -77,7 +77,7 @@ public class RoverPositionTests
     [Fact]
     public void FacingEastMoveBackward()
     {
-        Rover rover = new Rover(0, 0, "E");
+        var rover = new Rover(0, 0, "E");
 
         rover.Receive("b");
 

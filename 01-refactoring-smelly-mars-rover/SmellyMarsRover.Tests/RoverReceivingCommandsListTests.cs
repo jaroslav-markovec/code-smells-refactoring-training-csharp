@@ -7,7 +7,7 @@ public class RoverReceivingCommandsListTests
     [Fact]
     public void NoCommands()
     {
-        Rover rover = new Rover(0, 0, "N");
+        var rover = new Rover(0, 0, "N");
 
         rover.Receive("");
 
@@ -17,7 +17,7 @@ public class RoverReceivingCommandsListTests
     [Fact]
     public void TwoCommands()
     {
-        Rover rover = new Rover(0, 0, "N");
+        var rover = new Rover(0, 0, "N");
 
         rover.Receive("lf");
 
@@ -27,7 +27,7 @@ public class RoverReceivingCommandsListTests
     [Fact]
     public void ManyCommands()
     {
-        Rover rover = new Rover(0, 0, "N");
+        var rover = new Rover(0, 0, "N");
 
         rover.Receive("ffrbbrfflff");
 
