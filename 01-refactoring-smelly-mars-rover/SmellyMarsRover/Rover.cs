@@ -17,9 +17,9 @@ namespace SmellyMarsRover
 
         public void Receive(string commandsSequence)
         {
-            for (int i = 0; i < commandsSequence.Length; ++i)
+            for (var i = 0; i < commandsSequence.Length; ++i)
             {
-                string command = commandsSequence.Substring(i, 1);
+                var command = commandsSequence.Substring(i, 1);
 
                 if (command.Equals("l") || command.Equals("r"))
                 {
@@ -72,14 +72,14 @@ namespace SmellyMarsRover
                 else
                 {
                     // Displace Rover
-                    int displacement1 = -1;
+                    var displacement1 = -1;
 
                     if (command.Equals("f"))
                     {
                         displacement1 = 1;
                     }
 
-                    int displacement = displacement1;
+                    var displacement = displacement1;
 
                     if (_direction.Equals("N"))
                     {
