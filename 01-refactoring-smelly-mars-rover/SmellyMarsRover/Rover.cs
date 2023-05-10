@@ -2,73 +2,104 @@
 
 namespace SmellyMarsRover
 {
-    public class Rover {
-
-        private String _direction;
+    public class Rover
+    {
+        private string _direction;
         private int _y;
         private int _x;
 
-        public Rover(int x, int y, String direction) {
-            this._direction = direction;
-            this._y = y;
-            this._x = x;
+        public Rover(int x, int y, string direction)
+        {
+            _direction = direction;
+            _y = y;
+            _x = x;
         }
 
-        public void Receive(String commandsSequence) {
-            for (int i = 0; i < commandsSequence.Length; ++i) {
-                String command = commandsSequence.Substring(i,  1);
+        public void Receive(string commandsSequence)
+        {
+            for (int i = 0; i < commandsSequence.Length; ++i)
+            {
+                string command = commandsSequence.Substring(i, 1);
 
-                if (command.Equals("l") || command.Equals("r")) {
-
+                if (command.Equals("l") || command.Equals("r"))
+                {
                     // Rotate Rover
-                    if (_direction.Equals("N")) {
-                        if (command.Equals("r")) {
-                            _direction = "E";
-                        } else {
-                            _direction = "W";
-                        }
-                    } else if (_direction.Equals("S")) {
-                        if (command.Equals("r")) {
-                            _direction = "W";
-                        } else {
+                    if (_direction.Equals("N"))
+                    {
+                        if (command.Equals("r"))
+                        {
                             _direction = "E";
                         }
-                    } else if (_direction.Equals("W")) {
-                        if (command.Equals("r")) {
+                        else
+                        {
+                            _direction = "W";
+                        }
+                    }
+                    else if (_direction.Equals("S"))
+                    {
+                        if (command.Equals("r"))
+                        {
+                            _direction = "W";
+                        }
+                        else
+                        {
+                            _direction = "E";
+                        }
+                    }
+                    else if (_direction.Equals("W"))
+                    {
+                        if (command.Equals("r"))
+                        {
                             _direction = "N";
-                        } else {
+                        }
+                        else
+                        {
                             _direction = "S";
                         }
-                    } else {
-                        if (command.Equals("r")) {
+                    }
+                    else
+                    {
+                        if (command.Equals("r"))
+                        {
                             _direction = "S";
-                        } else {
+                        }
+                        else
+                        {
                             _direction = "N";
                         }
                     }
-                } else {
-
+                }
+                else
+                {
                     // Displace Rover
                     int displacement1 = -1;
 
-                    if (command.Equals("f")) {
+                    if (command.Equals("f"))
+                    {
                         displacement1 = 1;
                     }
+
                     int displacement = displacement1;
 
-                    if (_direction.Equals("N")) {
+                    if (_direction.Equals("N"))
+                    {
                         _y += displacement;
-                    } else if (_direction.Equals("S")) {
+                    }
+                    else if (_direction.Equals("S"))
+                    {
                         _y -= displacement;
-                    } else if (_direction.Equals("W")) {
+                    }
+                    else if (_direction.Equals("W"))
+                    {
                         _x -= displacement;
-                    } else {
+                    }
+                    else
+                    {
                         _x += displacement;
                     }
                 }
             }
         }
-
 
         public override bool Equals(object obj)
         {
@@ -77,8 +108,8 @@ namespace SmellyMarsRover
             if (obj.GetType() != this.GetType()) return false;
             return Equals((Rover)obj);
         }
-        
-        private bool Equals(Rover other)
+
+        protected bool Equals(Rover other)
         {
             return _direction == other._direction && _y == other._y && _x == other._x;
         }
@@ -90,11 +121,7 @@ namespace SmellyMarsRover
 
         public override string ToString()
         {
-            return "Rover{" +
-                "direction='" + _direction + '\'' +
-                ", y=" + _y +
-                ", x=" + _x +
-                '}';
+            return $"{nameof(_direction)}: {_direction}, {nameof(_y)}: {_y}, {nameof(_x)}: {_x}";
         }
     }
 }
