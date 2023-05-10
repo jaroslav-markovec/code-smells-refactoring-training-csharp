@@ -5,7 +5,8 @@ namespace SmellyMarsRover.Tests;
 public class RoverReceivingCommandsListTests
 {
     [Fact]
-    public void NoCommands() {
+    public void NoCommands()
+    {
         Rover rover = new Rover(0, 0, "N");
 
         rover.Receive("");
@@ -14,7 +15,8 @@ public class RoverReceivingCommandsListTests
     }
 
     [Fact]
-    public void TwoCommands() {
+    public void TwoCommands()
+    {
         Rover rover = new Rover(0, 0, "N");
 
         rover.Receive("lf");
@@ -23,7 +25,8 @@ public class RoverReceivingCommandsListTests
     }
 
     [Fact]
-    public void ManyCommands() {
+    public void ManyCommands()
+    {
         Rover rover = new Rover(0, 0, "N");
 
         rover.Receive("ffrbbrfflff");

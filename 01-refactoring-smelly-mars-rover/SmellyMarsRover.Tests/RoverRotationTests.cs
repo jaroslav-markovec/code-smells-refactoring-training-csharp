@@ -5,7 +5,8 @@ namespace SmellyMarsRover.Tests;
 public class RoverRotationTests
 {
     [Fact]
-    public void FacingNorthRotateLeft() {
+    public void FacingNorthRotateLeft()
+    {
         Rover rover = new Rover(0, 0, "N");
 
         rover.Receive("l");
@@ -14,7 +15,8 @@ public class RoverRotationTests
     }
 
     [Fact]
-    public void FacingNorthRotateRight() {
+    public void FacingNorthRotateRight()
+    {
         Rover rover = new Rover(0, 0, "N");
 
         rover.Receive("r");
@@ -23,7 +25,8 @@ public class RoverRotationTests
     }
 
     [Fact]
-    public void FacingSouthRotateLeft() {
+    public void FacingSouthRotateLeft()
+    {
         Rover rover = new Rover(0, 0, "S");
 
         rover.Receive("l");
@@ -32,7 +35,8 @@ public class RoverRotationTests
     }
 
     [Fact]
-    public void FacingSouthRotateRight() {
+    public void FacingSouthRotateRight()
+    {
         Rover rover = new Rover(0, 0, "S");
 
         rover.Receive("r");
@@ -41,7 +45,8 @@ public class RoverRotationTests
     }
 
     [Fact]
-    public void FacingWestRotateLeft() {
+    public void FacingWestRotateLeft()
+    {
         Rover rover = new Rover(0, 0, "W");
 
         rover.Receive("l");
@@ -50,7 +55,8 @@ public class RoverRotationTests
     }
 
     [Fact]
-    public void FacingWestRotateRight() {
+    public void FacingWestRotateRight()
+    {
         Rover rover = new Rover(0, 0, "W");
 
         rover.Receive("r");
@@ -59,7 +65,8 @@ public class RoverRotationTests
     }
 
     [Fact]
-    public void FacingEastRotateLeft() {
+    public void FacingEastRotateLeft()
+    {
         Rover rover = new Rover(0, 0, "E");
 
         rover.Receive("l");
@@ -68,7 +75,8 @@ public class RoverRotationTests
     }
 
     [Fact]
-    public void FacingEastRotateRight() {
+    public void FacingEastRotateRight()
+    {
         Rover rover = new Rover(0, 0, "E");
 
         rover.Receive("r");
