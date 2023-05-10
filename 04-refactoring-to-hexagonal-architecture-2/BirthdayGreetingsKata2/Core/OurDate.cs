@@ -21,7 +21,7 @@ public class OurDate
         return _date.Month;
     }
 
-    public Boolean IsSameDay(OurDate anotherDate)
+    public bool IsSameDay(OurDate anotherDate)
     {
         return anotherDate.GetDay() == GetDay()
                && anotherDate.GetMonth() == GetMonth();

@@ -9,53 +9,68 @@ public class EmployeesFile
 {
     private readonly StreamReader _streamReader;
 
-    private EmployeesFile(StreamReader streamReader) {
+    private EmployeesFile(StreamReader streamReader)
+    {
         _streamReader = streamReader;
     }
 
-    public static EmployeesFile LoadFrom(String path) {
+    public static EmployeesFile LoadFrom(string path)
+    {
         return new EmployeesFile(FileReader.ReadSkippingHeader(path));
     }
 
-    public List<Employee> ExtractEmployees() {
-        List<Employee> employees = new List<Employee>();
-        while (_streamReader.ReadLine() is { } line) {
-            EmployeeCsvRepresentation representation = new EmployeeCsvRepresentation(line);
+    public List<Employee> ExtractEmployees()
+    {
+        var employees = new List<Employee>();
+        while (_streamReader.ReadLine() is { } line)
+        {
+            var representation = new EmployeeCsvRepresentation(line);
             employees.Add(representation.ConvertToEmployee());
         }
+
         _streamReader.Close();
         return employees;
     }
 
-    private class EmployeeCsvRepresentation {
-        private readonly String _content;
-        private readonly String[] _tokens;
+    private class EmployeeCsvRepresentation
+    {
+        private readonly string _content;
+        private readonly string[] _tokens;
 
-        public EmployeeCsvRepresentation(String content) {
+        public EmployeeCsvRepresentation(string content)
+        {
             _content = content;
             _tokens = content.Split(", ");
         }
 
-        public Employee ConvertToEmployee() {
+        public Employee ConvertToEmployee()
+        {
             return new Employee(FirstName(), LastName(), BirthDate(), Email());
         }
 
-        private String LastName() {
+        private string LastName()
+        {
             return _tokens[0];
         }
 
-        private String Email() {
+        private string Email()
+        {
             return _tokens[3];
         }
 
-        private String FirstName() {
+        private string FirstName()
+        {
             return _tokens[1];
         }
 
-        private OurDate BirthDate() {
-            try {
+        private OurDate BirthDate()
+        {
+            try
+            {
                 return new DateRepresentation(DateAsString()).ToDate();
-            } catch (FormatException exception) {
+            }
+            catch (FormatException exception)
+            {
                 throw new CannotReadEmployeesException(
                     $"Badly formatted employee birth date in: '{_content}'",
                     exception
@@ -63,16 +78,22 @@ public class EmployeesFile
             }
         }
 
-        private String DateAsString() {
+        private string DateAsString()
+        {
             return _tokens[2];
         }
     }
 
-    private static class FileReader {
-        public static StreamReader ReadSkippingHeader(String path) {
-            try {
+    private static class FileReader
+    {
+        public static StreamReader ReadSkippingHeader(string path)
+        {
+            try
+            {
                 return SkipHeader(ReadFile(path));
-            } catch (IOException exception) {
+            }
+            catch (IOException exception)
+            {
                 throw new CannotReadEmployeesException(
                     $"cannot loadFrom file = '{path}'",
                     exception
@@ -80,12 +101,14 @@ public class EmployeesFile
             }
         }
 
-        private static StreamReader ReadFile(string path) {
-            StreamReader reader = new StreamReader(path);
+        private static StreamReader ReadFile(string path)
+        {
+            var reader = new StreamReader(path);
             return reader;
         }
 
-        private static StreamReader SkipHeader(StreamReader stream) {
+        private static StreamReader SkipHeader(StreamReader stream)
+        {
             stream.ReadLine();
             return stream;
         }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Net.Mail;
 using BirthdayGreetingsKata2.Core;
@@ -14,40 +13,40 @@ public class BirthdayService
         _employeesRepository = employeesRepository;
     }
 
-    public void SendGreetings(OurDate date, String smtpHost, int smtpPort, String sender)
+    public void SendGreetings(OurDate date, string smtpHost, int smtpPort, string sender)
     {
         Send(GreetingMessagesFor(EmployeesHavingBirthday(date)),
             smtpHost, smtpPort, sender);
     }
 
-    private static List<GreetingMessage> GreetingMessagesFor(List<Employee> employees)
+    private static List<GreetingMessage> GreetingMessagesFor(IEnumerable<Employee> employees)
     {
         return GreetingMessage.GenerateForSome(employees);
     }
 
-    private List<Employee> EmployeesHavingBirthday(OurDate today)
+    private IEnumerable<Employee> EmployeesHavingBirthday(OurDate today)
     {
         return _employeesRepository.WhoseBirthdayIs(today);
     }
 
-    private void Send(List<GreetingMessage> messages, String smtpHost, int smtpPort, String sender)
+    private void Send(List<GreetingMessage> messages, string smtpHost, int smtpPort, string sender)
     {
         foreach (var message in messages)
         {
-            String recipient = message.To();
-            String body = message.Text();
-            String subject = message.Subject();
+            var recipient = message.To();
+            var body = message.Text();
+            var subject = message.Subject();
             SendMessage(smtpHost, smtpPort, sender, subject, body, recipient);
         }
     }
 
-    private void SendMessage(String smtpHost, int smtpPort, String sender,
-        String subject, String body, String recipient)
+    private void SendMessage(string smtpHost, int smtpPort, string sender,
+        string subject, string body, string recipient)
     {
         // Create a mail session
         var smtpClient = new SmtpClient(smtpHost)
         {
-            Port = smtpPort,
+            Port = smtpPort
         };
 
         // Construct the message
@@ -55,7 +54,7 @@ public class BirthdayService
         {
             From = new MailAddress(sender),
             Subject = subject,
-            Body = body,
+            Body = body
         };
         msg.To.Add(recipient);
 

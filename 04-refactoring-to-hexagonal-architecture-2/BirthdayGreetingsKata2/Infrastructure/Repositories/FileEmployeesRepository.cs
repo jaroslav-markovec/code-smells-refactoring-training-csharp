@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using BirthdayGreetingsKata2.Core;
@@ -7,9 +6,9 @@ namespace BirthdayGreetingsKata2.Infrastructure.Repositories;
 
 public class FileEmployeesRepository : IEmployeesRepository
 {
-    private readonly String _path;
+    private readonly string _path;
 
-    public FileEmployeesRepository(String path)
+    public FileEmployeesRepository(string path)
     {
         _path = path;
     }
@@ -23,7 +22,7 @@ public class FileEmployeesRepository : IEmployeesRepository
 
     private List<Employee> AllEmployees()
     {
-        EmployeesFile employeesFile = EmployeesFile.LoadFrom(_path);
+        var employeesFile = EmployeesFile.LoadFrom(_path);
         return employeesFile.ExtractEmployees();
     }
 }

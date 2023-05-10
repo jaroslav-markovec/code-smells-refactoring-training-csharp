@@ -11,13 +11,17 @@ public class App
     private const string Host = "localhost";
     private const int SmtpPort = 25;
 
-    static void Main(string[] args) {
-        BirthdayService service = new BirthdayService(
+    static void Main(string[] args)
+    {
+        var service = new BirthdayService(
             new FileEmployeesRepository(EmployeesFilePath));
-        try {
-            OurDate today = new OurDate(new DateTime());
+        try
+        {
+            var today = new OurDate(new DateTime());
             service.SendGreetings(today, Host, SmtpPort, SenderEmailAddress);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             Console.Write(e.StackTrace);
         }
     }

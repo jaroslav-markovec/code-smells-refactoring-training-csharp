@@ -1,5 +1,3 @@
-using System;
-
 namespace BirthdayGreetingsKata2.Core;
 
 public class Greeting
@@ -7,15 +5,16 @@ public class Greeting
     public string Header { get; }
     public string Content { get; }
 
-    private Greeting(string header, string content) {
+    private Greeting(string header, string content)
+    {
         Header = header;
         Content = content;
     }
 
-    public static Greeting ForBirthdayOf(Employee employee){
-        String content = $"Happy Birthday, dear {employee.FirstName}!";
-        String header = "Happy Birthday!";
+    public static Greeting ForBirthdayOf(Employee employee)
+    {
+        var content = $"Happy Birthday, dear {employee.FirstName}!";
+        var header = "Happy Birthday!";
         return new Greeting(header, content);
     }
-
 }

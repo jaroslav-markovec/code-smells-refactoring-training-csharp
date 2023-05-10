@@ -8,7 +8,7 @@ public class DateRepresentation
     private const string DateFormat = "yyyy/MM/dd";
     private readonly string _dateAsString;
 
-    public DateRepresentation(String dateAsString)
+    public DateRepresentation(string dateAsString)
     {
         _dateAsString = dateAsString;
     }

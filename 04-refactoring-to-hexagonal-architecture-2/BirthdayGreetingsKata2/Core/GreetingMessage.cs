@@ -5,30 +5,34 @@ namespace BirthdayGreetingsKata2.Core;
 
 public class GreetingMessage
 {
-    private readonly string _to; 
+    private readonly string _to;
     private readonly Greeting _greeting;
 
-    private GreetingMessage(string to, Greeting greeting) {
+    private GreetingMessage(string to, Greeting greeting)
+    {
         _to = to;
         _greeting = greeting;
     }
 
-    public static List<GreetingMessage> GenerateForSome(List<Employee> employees)
+    public static List<GreetingMessage> GenerateForSome(IEnumerable<Employee> employees)
     {
         return employees.Select(GenerateFor).ToList();
     }
 
-    private static GreetingMessage GenerateFor(Employee employee) {
-        Greeting greeting = Greeting.ForBirthdayOf(employee);
-        string recipient = employee.Email;
+    private static GreetingMessage GenerateFor(Employee employee)
+    {
+        var greeting = Greeting.ForBirthdayOf(employee);
+        var recipient = employee.Email;
         return new GreetingMessage(recipient, greeting);
     }
 
-    public string Subject() {
+    public string Subject()
+    {
         return _greeting.Header;
     }
 
-    public string Text() {
+    public string Text()
+    {
         return _greeting.Content;
     }
 
@@ -36,5 +40,4 @@ public class GreetingMessage
     {
         return _to;
     }
-
 }

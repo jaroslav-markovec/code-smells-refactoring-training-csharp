@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Net.Mail;
 using BirthdayGreetingsKata2.Application;
@@ -12,11 +11,11 @@ namespace BirthdayGreetingsKata2.Tests.Application;
 public class AcceptanceTest
 {
     private const int SmtpPort = 25;
-    private const String SmtpHost = "localhost";
-    private const String From = "sender@here.com";
+    private const string SmtpHost = "localhost";
+    private const string From = "sender@here.com";
     private readonly List<MailMessage> _messagesSent;
     private readonly BirthdayService _service;
-    private const String EmployeesFilePath = "Application/employee_data.txt";
+    private const string EmployeesFilePath = "Application/employee_data.txt";
 
     private class BirthdayServiceForTesting : BirthdayService
     {
@@ -43,12 +42,12 @@ public class AcceptanceTest
     [Fact]
     public void BaseScenario()
     {
-        OurDate today = OurDateFromString("2008/10/08");
+        var today = OurDateFromString("2008/10/08");
 
         _service.SendGreetings(today, SmtpHost, SmtpPort, From);
 
         Assert.Single(_messagesSent);
-        MailMessage message = _messagesSent[0];
+        var message = _messagesSent[0];
         Assert.Equal("Happy Birthday, dear John!", message.Body);
         Assert.Equal("Happy Birthday!", message.Subject);
         Assert.Single(message.To);
@@ -58,7 +57,7 @@ public class AcceptanceTest
     [Fact]
     public void WillNotSendEmailsWhenNobodysBirthday()
     {
-        OurDate today = OurDateFromString("2008/01/01");
+        var today = OurDateFromString("2008/01/01");
 
         _service.SendGreetings(today, SmtpHost, SmtpPort, From);
 
