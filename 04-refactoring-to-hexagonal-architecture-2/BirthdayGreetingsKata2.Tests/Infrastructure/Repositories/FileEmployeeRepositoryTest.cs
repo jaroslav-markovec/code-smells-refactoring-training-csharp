@@ -1,6 +1,8 @@
+using System;
 using BirthdayGreetingsKata2.Core;
 using BirthdayGreetingsKata2.Infrastructure.Repositories;
-using Xunit;
+using NSubstitute;
+using NUnit.Framework;
 using static BirthdayGreetingsKata2.Tests.helpers.OurDateFactory;
 
 
@@ -15,7 +17,7 @@ public class FileEmployeeRepositoryTest
         _anyDate = OurDateFromString("2016/01/01");
     }
 
-    [Fact]
+    [Test]
     public void fails_when_the_file_does_not_exist()
     {
         IEmployeesRepository employeesRepository = new FileEmployeesRepository("non-existing.file");
@@ -23,11 +25,11 @@ public class FileEmployeeRepositoryTest
         var exception = 
             Assert.Throws<CannotReadEmployeesException>(() => employeesRepository.WhoseBirthdayIs(_anyDate));
 
-        Assert.Contains("cannot loadFrom file", exception.Message);
-        Assert.Contains("non-existing.file", exception.Message);
+        Assert.That(exception, Has.Message.Contains("cannot loadFrom file"));
+        Assert.That(exception, Has.Message.Contains("non-existing.file"));
     }
 
-    [Fact]
+    [Test]
     public void fails_when_the_file_does_not_have_the_necessary_fields()
     {
         IEmployeesRepository employeesRepository =
@@ -36,6 +38,6 @@ public class FileEmployeeRepositoryTest
         var exception = 
             Assert.Throws<CannotReadEmployeesException>(() => employeesRepository.WhoseBirthdayIs(_anyDate));
 
-        Assert.Contains("Badly formatted employee birth date in", exception.Message);
+        Assert.That(exception, Has.Message.Contains("Badly formatted employee birth date in"));
     }
 }

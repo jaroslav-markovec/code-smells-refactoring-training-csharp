@@ -3,7 +3,7 @@ using System.Net.Mail;
 using BirthdayGreetingsKata2.Application;
 using BirthdayGreetingsKata2.Core;
 using BirthdayGreetingsKata2.Infrastructure.Repositories;
-using Xunit;
+using NUnit.Framework;
 using static BirthdayGreetingsKata2.Tests.helpers.OurDateFactory;
 
 namespace BirthdayGreetingsKata2.Tests.Application;
@@ -13,8 +13,8 @@ public class AcceptanceTest
     private const int SmtpPort = 25;
     private const string SmtpHost = "localhost";
     private const string From = "sender@here.com";
-    private readonly List<MailMessage> _messagesSent;
-    private readonly BirthdayService _service;
+    private List<MailMessage> _messagesSent;
+    private BirthdayService _service;
     private const string EmployeesFilePath = "Application/employee_data.txt";
 
     private class BirthdayServiceForTesting : BirthdayService
@@ -33,34 +33,35 @@ public class AcceptanceTest
         }
     }
 
-    public AcceptanceTest()
+    [SetUp]
+    public void SetUp()
     {
         _messagesSent = new List<MailMessage>();
         _service = new BirthdayServiceForTesting(_messagesSent, new FileEmployeesRepository(EmployeesFilePath));
     }
 
-    [Fact]
+    [Test]
     public void BaseScenario()
     {
         var today = OurDateFromString("2008/10/08");
 
         _service.SendGreetings(today, SmtpHost, SmtpPort, From);
 
-        Assert.Single(_messagesSent);
+        Assert.That(_messagesSent, Has.Exactly(1).Items);
         var message = _messagesSent[0];
-        Assert.Equal("Happy Birthday, dear John!", message.Body);
-        Assert.Equal("Happy Birthday!", message.Subject);
-        Assert.Single(message.To);
-        Assert.Equal("john.doe@foobar.com", message.To[0].Address);
+        Assert.That(message.Body, Is.EqualTo("Happy Birthday, dear John!"));
+        Assert.That(message.Subject, Is.EqualTo("Happy Birthday!"));
+        Assert.That(message.To, Has.Exactly(1).Items);
+        Assert.That(message.To[0].Address, Is.EqualTo("john.doe@foobar.com"));
     }
 
-    [Fact]
+    [Test]
     public void WillNotSendEmailsWhenNobodysBirthday()
     {
         var today = OurDateFromString("2008/01/01");
 
         _service.SendGreetings(today, SmtpHost, SmtpPort, From);
 
-        Assert.Empty(_messagesSent);
+        Assert.That(_messagesSent, Is.Empty);
     }
 }

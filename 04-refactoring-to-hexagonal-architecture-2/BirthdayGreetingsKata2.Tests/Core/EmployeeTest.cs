@@ -1,17 +1,17 @@
 using BirthdayGreetingsKata2.Core;
-using Xunit;
+using NUnit.Framework;
 using static BirthdayGreetingsKata2.Tests.helpers.OurDateFactory;
 
 namespace BirthdayGreetingsKata2.Tests.Core;
 
 public class EmployeeTest
 {
-    [Fact]
+    [Test]
     public void TestBirthday()
     {
         var employee = new Employee("foo", "bar", OurDateFromString("1990/01/31"), "a@b.c");
 
-        Assert.False(employee.IsBirthday(OurDateFromString("2008/01/30")), "no birthday");
-        Assert.True(employee.IsBirthday(OurDateFromString("2008/01/31")), "birthday");
+        Assert.That(employee.IsBirthday(OurDateFromString("2008/01/30")), Is.False, "no birthday");
+        Assert.That(employee.IsBirthday(OurDateFromString("2008/01/31")), Is.True, "birthday");
     }
 }
