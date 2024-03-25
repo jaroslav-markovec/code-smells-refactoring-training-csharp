@@ -41,7 +41,7 @@ public class AcceptanceTest
     }
 
     [Test]
-    public void BaseScenario()
+    public void Base_Scenario()
     {
         var today = OurDateFromString("2008/10/08");
 
@@ -56,7 +56,7 @@ public class AcceptanceTest
     }
 
     [Test]
-    public void WillNotSendEmailsWhenNobodysBirthday()
+    public void Will_Not_Send_Emails_When_Nobodies_Birthday()
     {
         var today = OurDateFromString("2008/01/01");
 

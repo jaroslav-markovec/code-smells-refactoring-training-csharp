@@ -33,7 +33,7 @@ public class AcceptanceTest
     }
 
     [Test]
-    public void BaseScenario()
+    public void Base_Scenario()
     {
         _service.SendGreetings("employee_data.txt",
             new OurDate("2008/10/08"), "localhost", SmtpPort);
@@ -47,7 +47,7 @@ public class AcceptanceTest
     }
 
     [Test]
-    public void WillNotSendEmailsWhenNobodysBirthday()
+    public void Will_Not_Send_Emails_When_Nobodies_Birthday()
     {
         _service.SendGreetings("employee_data.txt",
             new OurDate("2008/01/01"), "localhost", SmtpPort);

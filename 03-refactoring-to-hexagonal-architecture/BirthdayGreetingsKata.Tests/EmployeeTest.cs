@@ -5,7 +5,7 @@ namespace BirthdayGreetingsKata.Tests;
 public class EmployeeTest
 {
     [Test]
-    public void TestBirthday()
+    public void Test_Birthday()
     {
         var employee = new Employee("foo", "bar", "1990/01/31", "a@b.c");
         Assert.That(employee.IsBirthday(new OurDate("2008/01/30")),

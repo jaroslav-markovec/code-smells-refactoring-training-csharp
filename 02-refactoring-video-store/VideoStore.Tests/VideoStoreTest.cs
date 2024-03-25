@@ -13,7 +13,7 @@ public class VideoStoreTest
     }
 
     [Test]
-    public void TestSingleNewReleaseStatement()
+    public void Single_New_Release_Statement()
     {
         _customer.AddRental(new Rental(new Movie("The Cell", Movie.NewRelease), 3));
 
@@ -23,7 +23,7 @@ public class VideoStoreTest
     }
 
     [Test]
-    public void TestDualNewReleaseStatement()
+    public void Dual_New_Release_Statement()
     {
         _customer.AddRental(new Rental(new Movie("The Cell", Movie.NewRelease), 3));
         _customer.AddRental(new Rental(new Movie("The Tiger Movie", Movie.NewRelease), 3));
@@ -35,7 +35,7 @@ public class VideoStoreTest
     }
 
     [Test]
-    public void TestSingleChildrenStatement()
+    public void Single_Children_Statement()
     {
         _customer.AddRental(new Rental(new Movie("The Tigger Movie", Movie.Children), 3));
 
@@ -46,7 +46,7 @@ public class VideoStoreTest
     }
 
     [Test]
-    public void TestSingleChildrenStatementRentedMoreThanThreeDaysAgo()
+    public void Single_Children_Statement_Rented_More_Than_Three_Days_Ago()
     {
         _customer.AddRental(new Rental(new Movie("The Tigger Movie", Movie.Children), 4));
 
@@ -57,7 +57,7 @@ public class VideoStoreTest
     }
 
     [Test]
-    public void TestMultipleRegularStatement()
+    public void Multiple_Regular_Statement()
     {
         _customer.AddRental(new Rental(new Movie("Plan 9 from Outer Space", Movie.Regular), 1));
         _customer.AddRental(new Rental(new Movie("8 1/2", Movie.Regular), 2));

@@ -5,7 +5,7 @@ namespace SmellyMarsRover.Tests;
 public class RoverRotationTests
 {
     [Test]
-    public void FacingNorthRotateLeft()
+    public void Facing_North_Rotate_Left()
     {
         var rover = new Rover(0, 0, "N");
 
@@ -15,7 +15,7 @@ public class RoverRotationTests
     }
 
     [Test]
-    public void FacingNorthRotateRight()
+    public void Facing_North_Rotate_Right()
     {
         var rover = new Rover(0, 0, "N");
 
@@ -25,7 +25,7 @@ public class RoverRotationTests
     }
 
     [Test]
-    public void FacingSouthRotateLeft()
+    public void Facing_South_Rotate_Left()
     {
         var rover = new Rover(0, 0, "S");
 
@@ -35,7 +35,7 @@ public class RoverRotationTests
     }
 
     [Test]
-    public void FacingSouthRotateRight()
+    public void Facing_South_Rotate_Right()
     {
         var rover = new Rover(0, 0, "S");
 
@@ -45,7 +45,7 @@ public class RoverRotationTests
     }
 
     [Test]
-    public void FacingWestRotateLeft()
+    public void Facing_West_Rotate_Left()
     {
         var rover = new Rover(0, 0, "W");
 
@@ -55,7 +55,7 @@ public class RoverRotationTests
     }
 
     [Test]
-    public void FacingWestRotateRight()
+    public void Facing_West_Rotate_Right()
     {
         var rover = new Rover(0, 0, "W");
 
@@ -65,7 +65,7 @@ public class RoverRotationTests
     }
 
     [Test]
-    public void FacingEastRotateLeft()
+    public void Facing_East_Rotate_Left()
     {
         var rover = new Rover(0, 0, "E");
 
@@ -75,7 +75,7 @@ public class RoverRotationTests
     }
 
     [Test]
-    public void FacingEastRotateRight()
+    public void Facing_East_Rotate_Right()
     {
         var rover = new Rover(0, 0, "E");
 

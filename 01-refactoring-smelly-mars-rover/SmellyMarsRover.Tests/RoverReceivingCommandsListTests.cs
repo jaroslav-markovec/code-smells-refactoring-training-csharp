@@ -5,7 +5,7 @@ namespace SmellyMarsRover.Tests;
 public class RoverReceivingCommandsListTests
 {
     [Test]
-    public void NoCommands()
+    public void No_Commands()
     {
         var rover = new Rover(0, 0, "N");
 
@@ -15,7 +15,7 @@ public class RoverReceivingCommandsListTests
     }
 
     [Test]
-    public void TwoCommands()
+    public void Two_Commands()
     {
         var rover = new Rover(0, 0, "N");
 
@@ -25,7 +25,7 @@ public class RoverReceivingCommandsListTests
     }
 
     [Test]
-    public void ManyCommands()
+    public void Many_Commands()
     {
         var rover = new Rover(0, 0, "N");
 

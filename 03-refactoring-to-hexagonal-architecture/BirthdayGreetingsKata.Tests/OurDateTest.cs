@@ -5,7 +5,7 @@ namespace BirthdayGreetingsKata.Tests;
 public class OurDateTest
 {
     [Test]
-    public void IsSameDate()
+    public void Is_Same_Date()
     {
         var ourDate = new OurDate("1789/01/24");
         var sameDay = new OurDate("2001/01/24");

@@ -7,7 +7,7 @@ namespace BirthdayGreetingsKata2.Tests.Core;
 public class EmployeeTest
 {
     [Test]
-    public void TestBirthday()
+    public void Test_Birthday()
     {
         var employee = new Employee("foo", "bar", OurDateFromString("1990/01/31"), "a@b.c");
 

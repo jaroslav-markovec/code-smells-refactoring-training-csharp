@@ -5,7 +5,7 @@ namespace SmellyMarsRover.Tests;
 public class RoverPositionTests
 {
     [Test]
-    public void FacingNorthMoveForward()
+    public void Facing_North_Move_Forward()
     {
         var rover = new Rover(0, 0, "N");
 
@@ -15,7 +15,7 @@ public class RoverPositionTests
     }
 
     [Test]
-    public void FacingNorthMoveBackward()
+    public void Facing_North_Move_Backward()
     {
         var rover = new Rover(0, 0, "N");
 
@@ -25,7 +25,7 @@ public class RoverPositionTests
     }
 
     [Test]
-    public void FacingSouthMoveForward()
+    public void Facing_South_Move_Forward()
     {
         var rover = new Rover(0, 0, "S");
 
@@ -35,7 +35,7 @@ public class RoverPositionTests
     }
 
     [Test]
-    public void FacingSouthMoveBackward()
+    public void Facing_South_Move_Backward()
     {
         var rover = new Rover(0, 0, "S");
 
@@ -45,7 +45,7 @@ public class RoverPositionTests
     }
 
     [Test]
-    public void FacingWestMoveForward()
+    public void Facing_West_Move_Forward()
     {
         var rover = new Rover(0, 0, "W");
 
@@ -55,7 +55,7 @@ public class RoverPositionTests
     }
 
     [Test]
-    public void FacingWestMoveBackward()
+    public void Facing_West_Move_Backward()
     {
         var rover = new Rover(0, 0, "W");
 
@@ -65,7 +65,7 @@ public class RoverPositionTests
     }
 
     [Test]
-    public void FacingEastMoveForward()
+    public void Facing_East_Move_Forward()
     {
         var rover = new Rover(0, 0, "E");
 
@@ -75,7 +75,7 @@ public class RoverPositionTests
     }
 
     [Test]
-    public void FacingEastMoveBackward()
+    public void Facing_East_Move_Backward()
     {
         var rover = new Rover(0, 0, "E");
 

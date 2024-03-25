@@ -6,7 +6,7 @@ namespace BirthdayGreetingsKata2.Tests.Core;
 public class OurDateTest
 {
     [Test]
-    public void identifies_if_two_dates_were_in_the_same_day()
+    public void Identifies_If_Two_Dates_Were_In_The_Same_Day()
     {
         var ourDate = OurDateFromString("1789/01/24");
         var sameDay = OurDateFromString("2001/01/24");
