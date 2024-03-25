@@ -12,12 +12,12 @@ public class OurDate
         _date = DateTime.ParseExact(yyyyMMdd, "yyyy/MM/dd", null);
     }
 
-    public int GetDay()
+    private int GetDay()
     {
         return _date.Day;
     }
 
-    public int GetMonth()
+    private int GetMonth()
     {
         return _date.Month;
     }

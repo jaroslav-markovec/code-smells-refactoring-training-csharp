@@ -5,14 +5,6 @@ namespace BirthdayGreetingsKata.Tests;
 public class OurDateTest
 {
     [Test]
-    public void Getters()
-    {
-        var ourDate = new OurDate("1789/01/24");
-        Assert.That(ourDate.GetMonth(), Is.EqualTo(1));
-        Assert.That(ourDate.GetDay(), Is.EqualTo(24));
-    }
-
-    [Test]
     public void IsSameDate()
     {
         var ourDate = new OurDate("1789/01/24");
