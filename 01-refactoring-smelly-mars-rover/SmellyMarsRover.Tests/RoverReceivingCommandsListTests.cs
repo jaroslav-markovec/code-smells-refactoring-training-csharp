@@ -11,7 +11,7 @@ public class RoverReceivingCommandsListTests
 
         rover.Receive("");
 
-        Assert.That(new Rover(0, 0, "N"), Is.EqualTo(rover));
+        Assert.That(rover, Is.EqualTo(new Rover(0, 0, "N")));
     }
 
     [Test]
@@ -21,7 +21,7 @@ public class RoverReceivingCommandsListTests
 
         rover.Receive("lf");
 
-        Assert.That(new Rover(-1, 0, "W"), Is.EqualTo(rover));
+        Assert.That(rover, Is.EqualTo(new Rover(-1, 0, "W")));
     }
 
     [Test]
@@ -31,6 +31,6 @@ public class RoverReceivingCommandsListTests
 
         rover.Receive("ffrbbrfflff");
 
-        Assert.That(new Rover(0, 0, "E"), Is.EqualTo(rover));
+        Assert.That(rover, Is.EqualTo(new Rover(0, 0, "E")));
     }
 }

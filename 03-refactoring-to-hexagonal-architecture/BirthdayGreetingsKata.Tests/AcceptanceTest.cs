@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using System.Net.Mail;
-using Xunit;
+using NUnit.Framework;
 
 namespace BirthdayGreetingsKata.Tests;
 
 public class AcceptanceTest
 {
     private const int SmtpPort = 25;
-    private readonly List<MailMessage> _messagesSent;
-    private readonly BirthdayService _service;
+    private List<MailMessage> _messagesSent;
+    private BirthdayService _service;
 
     private class BirthdayServiceForTesting : BirthdayService
     {
@@ -25,32 +25,33 @@ public class AcceptanceTest
         }
     }
 
-    public AcceptanceTest()
+    [SetUp]
+    public void SetUp()
     {
         _messagesSent = new List<MailMessage>();
         _service = new BirthdayServiceForTesting(_messagesSent);
     }
 
-    [Fact]
+    [Test]
     public void BaseScenario()
     {
         _service.SendGreetings("employee_data.txt",
             new OurDate("2008/10/08"), "localhost", SmtpPort);
 
-        Assert.Single(_messagesSent);
+        Assert.That(_messagesSent, Has.Exactly(1).Items);
         var message = _messagesSent[0];
-        Assert.Equal("Happy Birthday, dear John!", message.Body);
-        Assert.Equal("Happy Birthday!", message.Subject);
-        Assert.Single(message.To);
-        Assert.Equal("john.doe@foobar.com", message.To[0].Address);
+        Assert.That(message.Body, Is.EqualTo("Happy Birthday, dear John!"));
+        Assert.That(message.Subject, Is.EqualTo("Happy Birthday!"));
+        Assert.That(message.To, Has.Exactly(1).Items);
+        Assert.That(message.To[0].Address, Is.EqualTo("john.doe@foobar.com"));
     }
 
-    [Fact]
+    [Test]
     public void WillNotSendEmailsWhenNobodysBirthday()
     {
         _service.SendGreetings("employee_data.txt",
             new OurDate("2008/01/01"), "localhost", SmtpPort);
 
-        Assert.Empty(_messagesSent);
+        Assert.That(_messagesSent, Is.Empty);
     }
 }

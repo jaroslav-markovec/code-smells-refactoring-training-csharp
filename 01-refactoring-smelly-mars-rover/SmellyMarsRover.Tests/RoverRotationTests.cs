@@ -11,7 +11,7 @@ public class RoverRotationTests
 
         rover.Receive("l");
 
-        Assert.That(new Rover(0, 0, "W"), Is.EqualTo(rover));
+        Assert.That(rover, Is.EqualTo(new Rover(0, 0, "W")));
     }
 
     [Test]
@@ -21,7 +21,7 @@ public class RoverRotationTests
 
         rover.Receive("r");
 
-        Assert.That(new Rover(0, 0, "E"), Is.EqualTo(rover));
+        Assert.That(rover, Is.EqualTo(new Rover(0, 0, "E")));
     }
 
     [Test]
@@ -31,7 +31,7 @@ public class RoverRotationTests
 
         rover.Receive("l");
 
-        Assert.That(new Rover(0, 0, "E"), Is.EqualTo(rover));
+        Assert.That(rover, Is.EqualTo(new Rover(0, 0, "E")));
     }
 
     [Test]
@@ -41,7 +41,7 @@ public class RoverRotationTests
 
         rover.Receive("r");
 
-        Assert.That(new Rover(0, 0, "W"), Is.EqualTo(rover));
+        Assert.That(rover, Is.EqualTo(new Rover(0, 0, "W")));
     }
 
     [Test]
@@ -51,7 +51,7 @@ public class RoverRotationTests
 
         rover.Receive("l");
 
-        Assert.That(new Rover(0, 0, "S"), Is.EqualTo(rover));
+        Assert.That(rover, Is.EqualTo(new Rover(0, 0, "S")));
     }
 
     [Test]
@@ -61,7 +61,7 @@ public class RoverRotationTests
 
         rover.Receive("r");
 
-        Assert.That(new Rover(0, 0, "N"), Is.EqualTo(rover));
+        Assert.That(rover, Is.EqualTo(new Rover(0, 0, "N")));
     }
 
     [Test]
@@ -71,7 +71,7 @@ public class RoverRotationTests
 
         rover.Receive("l");
 
-        Assert.That(new Rover(0, 0, "N"), Is.EqualTo(rover));
+        Assert.That(rover, Is.EqualTo(new Rover(0, 0, "N")));
     }
 
     [Test]
@@ -81,6 +81,6 @@ public class RoverRotationTests
 
         rover.Receive("r");
 
-        Assert.That(new Rover(0, 0, "S"), Is.EqualTo(rover));
+        Assert.That(rover, Is.EqualTo(new Rover(0, 0, "S")));
     }
 }
