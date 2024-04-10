@@ -14,7 +14,7 @@ public class FileEmployeeRepositoryTest
         IEmployeesRepository employeesRepository = new FileEmployeesRepository("non-existing.file");
 
         var exception = 
-            Assert.Throws<CannotReadEmployeesException>(() => employeesRepository.WhoseBirthdayIs(OurDateFromString("2016/01/01")));
+            Assert.Throws<CannotReadEmployeesException>(() => employeesRepository.GetAll());
 
         Assert.That(exception, Has.Message.Contains("cannot loadFrom file"));
         Assert.That(exception, Has.Message.Contains("non-existing.file"));
@@ -27,7 +27,7 @@ public class FileEmployeeRepositoryTest
             new FileEmployeesRepository("Infrastructure/Repositories/wrong_data__wrong-date-format.csv");
 
         var exception = 
-            Assert.Throws<CannotReadEmployeesException>(() => employeesRepository.WhoseBirthdayIs(OurDateFromString("2016/01/01")));
+            Assert.Throws<CannotReadEmployeesException>(() => employeesRepository.GetAll());
 
         Assert.That(exception, Has.Message.Contains("Badly formatted employee birth date in"));
     }

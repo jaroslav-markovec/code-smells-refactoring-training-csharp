@@ -26,7 +26,8 @@ public class BirthdayService
 
     private IEnumerable<Employee> EmployeesHavingBirthday(OurDate today)
     {
-        return _employeesRepository.WhoseBirthdayIs(today);
+        return _employeesRepository.GetAll()
+            .FindAll(employee => employee.IsBirthday(today));
     }
 
     private void Send(List<GreetingMessage> messages, string smtpHost, int smtpPort, string sender)
