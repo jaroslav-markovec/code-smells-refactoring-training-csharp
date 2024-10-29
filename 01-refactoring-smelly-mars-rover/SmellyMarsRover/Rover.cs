@@ -16,14 +16,17 @@ namespace SmellyMarsRover
 
 
         private Direction _direction;
-        private int _y;
-        private int _x;
+        private Coordinates _coordinates;
 
         public Rover(int x, int y, string direction)
         {
             Direction = direction;
-            _y = y;
-            _x = x;
+            SetCoordinates(x, y);
+        }
+
+        private void SetCoordinates(int x, int y)
+        {
+            _coordinates = new Coordinates(x, y);
         }
 
         public void Receive(string commandsSequence)
@@ -89,43 +92,45 @@ namespace SmellyMarsRover
 
                     if (_direction.IsFacingNorth())
                     {
-                        _y += displacement;
+                        SetCoordinates(_coordinates.x, _coordinates.y + displacement);
                     }
                     else if (_direction.IsFacingSouth())
                     {
-                        _y -= displacement;
+                        SetCoordinates(_coordinates.x,_coordinates.y - displacement);
                     }
                     else if (_direction.IsFacingWest())
                     {
-                        _x -= displacement;
+                        SetCoordinates(_coordinates.x - displacement,_coordinates.y);
                     }
                     else
                     {
-                        _x += displacement;
+                        SetCoordinates(_coordinates.x + displacement,_coordinates.y);
                     }
                 }
             }
+        }
+       
+
+        public override string ToString()
+        {
+            return $"{nameof(_direction)}: {_direction}, {nameof(_coordinates)}: {_coordinates}";
         }
 
         public override bool Equals(object obj)
         {
             return obj is Rover rover &&
                    EqualityComparer<Direction>.Default.Equals(_direction, rover._direction) &&
-                   _y == rover._y &&
-                   _x == rover._x;
+                   EqualityComparer<Coordinates>.Default.Equals(_coordinates, rover._coordinates);
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(_direction, _y, _x);
+            return HashCode.Combine(_direction, _coordinates);
         }
-
-        public override string ToString()
-        {
-            return $"{nameof(_direction)}: {_direction}, {nameof(_y)}: {_y}, {nameof(_x)}: {_x}";
-        }
-
     }
+
+    internal record Coordinates(int x, int y);
+    
 
     internal record Direction(string value)
     {
