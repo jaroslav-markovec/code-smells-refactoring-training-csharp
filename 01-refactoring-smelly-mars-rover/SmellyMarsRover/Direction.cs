@@ -22,5 +22,9 @@
             return value.Equals("E");
         }
 
+        public static Direction Create(string value)
+        {
+            return new Direction(value);
+        }
     };
 }

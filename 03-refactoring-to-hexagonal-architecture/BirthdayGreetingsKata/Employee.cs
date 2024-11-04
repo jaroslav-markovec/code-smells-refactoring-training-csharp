@@ -14,9 +14,20 @@ public class Employee
     {
         FirstName = firstName;
         _lastName = lastName;
+        var dateTime = DateTime.ParseExact(birthDate, "yyyy/MM/dd", null);
+        _birthDate = new OurDate(dateTime);
+        Email = email;
+    }
+
+    public Employee(string firstName, string lastName, DateTime birthDate,
+        string email)
+    {
+        FirstName = firstName;
+        _lastName = lastName;
         _birthDate = new OurDate(birthDate);
         Email = email;
     }
+
 
     public bool IsBirthday(OurDate today)
     {

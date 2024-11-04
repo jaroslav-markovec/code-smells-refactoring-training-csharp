@@ -7,6 +7,7 @@ namespace BirthdayGreetingsKata.Tests;
 public class AcceptanceTest
 {
     private const int SmtpPort = 25;
+    private const string EmployeeFileName = "employee_data.txt";
     private List<MailMessage> _messagesSent;
     private BirthdayService _service;
 
@@ -14,7 +15,7 @@ public class AcceptanceTest
     {
         private readonly List<MailMessage> _messages;
 
-        public BirthdayServiceForTesting(List<MailMessage> messages)
+        public BirthdayServiceForTesting(List<MailMessage> messages, FileEmployeeRepository employeeRepository): base(employeeRepository)
         {
             _messages = messages;
         }
@@ -29,14 +30,15 @@ public class AcceptanceTest
     public void SetUp()
     {
         _messagesSent = new List<MailMessage>();
-        _service = new BirthdayServiceForTesting(_messagesSent);
+        var employeeRepository = new FileEmployeeRepository(EmployeeFileName);
+        _service = new BirthdayServiceForTesting(_messagesSent, employeeRepository);
     }
 
     [Test]
     public void Base_Scenario()
     {
-        _service.SendGreetings("employee_data.txt",
-            new OurDate("2008/10/08"), "localhost", SmtpPort);
+        _service.SendGreetings(EmployeeFileName,
+            DateHelper.OurDate("2008/10/08"), "localhost", SmtpPort);
 
         Assert.That(_messagesSent, Has.Exactly(1).Items);
         var message = _messagesSent[0];
@@ -49,8 +51,8 @@ public class AcceptanceTest
     [Test]
     public void Will_Not_Send_Emails_When_Nobodies_Birthday()
     {
-        _service.SendGreetings("employee_data.txt",
-            new OurDate("2008/01/01"), "localhost", SmtpPort);
+        _service.SendGreetings(EmployeeFileName,
+            DateHelper.OurDate("2008/01/01"), "localhost", SmtpPort);
 
         Assert.That(_messagesSent, Is.Empty);
     }

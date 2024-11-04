@@ -1,22 +1,23 @@
-using System;
-using System.IO;
 using System.Net.Mail;
 
 namespace BirthdayGreetingsKata;
 
 public class BirthdayService
 {
+    private readonly IEmployeeRepository _employeeRepository;
+
+    public BirthdayService(IEmployeeRepository employeeRepository)
+    {
+        _employeeRepository = employeeRepository;
+    }
+
     public void SendGreetings(string fileName, OurDate ourDate,
         string smtpHost, int smtpPort)
     {
-        using var reader = new StreamReader(fileName);
-        var str = "";
-        str = reader.ReadLine(); // skip header
-        while ((str = reader.ReadLine()) != null)
+        var employees = _employeeRepository.GetAll();
+
+        foreach (var employee in employees)
         {
-            var employeeData = str.Split(", ");
-            var employee = new Employee(employeeData[1], employeeData[0],
-                employeeData[2], employeeData[3]);
             if (employee.IsBirthday(ourDate))
             {
                 var recipient = employee.Email;
@@ -28,6 +29,7 @@ public class BirthdayService
             }
         }
     }
+    
 
     private void SendMessage(string smtpHost, int smtpPort, string sender,
         string subject, string body, string recipient)
@@ -57,17 +59,5 @@ public class BirthdayService
         smtpClient.Send(msg);
     }
 
-    static void Main(string[] args)
-    {
-        var service = new BirthdayService();
-        try
-        {
-            service.SendGreetings("employee_data.txt",
-                new OurDate("2008/10/08"), "localhost", 25);
-        }
-        catch (Exception e)
-        {
-            Console.Write(e.StackTrace);
-        }
-    }
+   
 }

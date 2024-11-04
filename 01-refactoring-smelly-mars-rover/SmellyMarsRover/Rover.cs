@@ -1,26 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Http.Headers;
 
 namespace SmellyMarsRover
 {
     public class Rover
     {
-        private string Direction
-        {
-            set
-            {
-                _direction = new Direction(value);
-            }
-        }
-
-
         private Direction _direction;
         private Coordinates _coordinates;
 
         public Rover(int x, int y, string direction)
         {
-            Direction = direction;
+            _direction = Direction.Create(direction);
             SetCoordinates(x, y);
         }
 
@@ -38,44 +28,30 @@ namespace SmellyMarsRover
 
                 if (command.Equals("l"))
                 {
-                    // Rotate Rover Left
-                    if (_direction.IsFacingNorth())
-                    {
-                        Direction = "W";
-                    }
-                    else if (_direction.IsFacingSouth())
-                    {
-                        Direction = "E";
-                    }
-                    else if (_direction.IsFacingWest())
-                    {
-                        Direction = "S";
-                    }
-                    else
-                    {
-                        Direction = "N";
-                    }
+                    var direction = RotateLeft();
+
+                    _direction = direction;
                 }
                 else if (command.Equals("r"))
                 {
                     // Rotate Rover Right
                     if (_direction.IsFacingNorth())
                     {
-                        Direction = "E";
+                        _direction = Direction.Create("E");
 
                     }
                     else if (_direction.IsFacingSouth())
                     {
-                        Direction = "W";
+                        _direction = Direction.Create("W");
 
                     }
                     else if (_direction.IsFacingWest())
                     {
-                        Direction = "N";
+                        _direction = Direction.Create("N");
                     }
                     else
                     {
-                        Direction = "S";
+                        _direction = Direction.Create("S");
                     }
                 }
                 else
@@ -108,6 +84,29 @@ namespace SmellyMarsRover
                     }
                 }
             }
+        }
+
+        private Direction RotateLeft()
+        {
+            Direction direction;
+            if (_direction.IsFacingNorth())
+            {
+                direction = Direction.Create("W");
+            }
+            else if (_direction.IsFacingSouth())
+            {
+                direction = Direction.Create("E");
+            }
+            else if (_direction.IsFacingWest())
+            {
+                direction = Direction.Create("S");
+            }
+            else
+            {
+                direction = Direction.Create("N");
+            }
+
+            return direction;
         }
 
         public override string ToString()
